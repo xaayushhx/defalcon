@@ -80,20 +80,20 @@ export const goaExperiences = [
     title: 'Candolim Beach & Coastline',
     description:
       'One of North Goa\'s most beloved beaches, known for its golden sands, gentle waves, and stunning sunsets. Located just moments from Defalcon Goa Beach Resort.',
-    image: '/images/resort/hotel-main.avif',
+    image: '/images/goa/candolim-beach-sunset.jpg',
   },
   {
     id: 2,
     title: 'Boutique Coastal Living',
     description:
       'Relax by the swimming pool, surrounded by lush palm greenery and tranquil tropical gardens right in the heart of Candolim.',
-    image: '/images/rooms/luxury/luxray-room-with-jacuzzi-room-2.jpg',
+    image: '/images/goa/coastal-living.jpg',
   },
   {
     id: 3,
     title: 'North Goa Explorations',
     description:
       'Discover historic Fort Aguada, lively beach shacks, night markets, and authentic Goan seafood within easy driving distance.',
-    image: '/images/rooms/super-deluxe/super-deluxe-room.jpg',
+    image: '/images/goa/north-goa-fort.jpg',
   },
 ];
