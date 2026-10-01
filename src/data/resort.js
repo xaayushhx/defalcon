@@ -18,15 +18,15 @@ export const resort = {
     'Whether you are here to unwind by the pool, explore the vibrant local culture, or simply soak in the coastal atmosphere, Defalcon provides a peaceful base for your Goan holiday.',
 
   phone: '+91 86696 77609',
-  email: 'reservations@defalcongoa.com',
   whatsapp: '918669677609', // WhatsApp number for enquiries (no spaces)
 
-  // [PLACEHOLDER] — Replace with actual coordinates
-  mapCoordinates: {
-    lat: 15.5180,
-    lng: 73.7630,
-  },
-  mapEmbedUrl: '', // Paste Google Maps embed URL here
+  // Booking engine URL
+  bookingUrl:
+    'https://bookings.asiatech.in/?page=2109&type=googlehotelads&checkin=2026-10-02&checkout=2026-10-03&bookingSource=GoogleCPC',
+
+  // Google Maps embed URL
+  mapEmbedUrl:
+    'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3844.425857047664!2d73.76517807589262!3d15.51528498508682!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bbfc1100369a037%3A0xdd605167d56e8e57!2sDe%20Falcon%20Goa%20Beach%20Resorts!5e0!3m2!1sen!2sin!4v1790875132496!5m2!1sen!2sin',
 
   address: {
     line1: '503/A Vaddy, Fort Aguada Road',
@@ -96,3 +96,14 @@ export const goaExperiences = [
     image: '/images/goa/north-goa-fort.jpg',
   },
 ];
+
+export const getBookingUrl = (checkIn, checkOut, guests) => {
+  const base = 'https://bookings.asiatech.in/?page=2109&type=googlehotelads';
+  const cin = checkIn || '2026-10-02';
+  const cout = checkOut || '2026-10-03';
+  let url = `${base}&checkin=${cin}&checkout=${cout}&bookingSource=GoogleCPC`;
+  if (guests) {
+    url += `&guests=${guests}`;
+  }
+  return url;
+};

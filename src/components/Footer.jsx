@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { resort } from '../data/resort';
 import { rooms } from '../data/rooms';
-import { MapPin, Phone, Mail } from 'lucide-react';
+import { MapPin, Phone } from 'lucide-react';
 
 const InstagramIcon = ({ size = 16, className = "" }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
@@ -138,13 +138,14 @@ export default function Footer() {
                     {resort.phone}
                   </a>
                 </li>
-                <li className="flex items-center gap-3">
-                  <Mail size={16} className="flex-shrink-0 text-sand-300" />
+                <li className="pt-2">
                   <a
-                    href={`mailto:${resort.email}`}
-                    className="font-sans text-sm text-white/60 hover:text-sand-300 transition-colors"
+                    href={resort.bookingUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-sand-500/20 text-sand-300 hover:bg-sand-500/30 text-xs font-sans font-medium transition-colors"
                   >
-                    {resort.email}
+                    Book Online (Best Rates) →
                   </a>
                 </li>
               </ul>

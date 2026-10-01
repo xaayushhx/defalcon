@@ -16,7 +16,7 @@ import {
   Waves
 } from 'lucide-react';
 import { rooms } from '../data/rooms';
-import { resort } from '../data/resort';
+import { resort, getBookingUrl } from '../data/resort';
 import RoomGallery from '../components/RoomGallery';
 import RoomSpecifications from '../components/RoomSpecifications';
 import AmenitiesGrid from '../components/AmenitiesGrid';
@@ -70,20 +70,16 @@ export default function RoomDetail({ defaultSlug }) {
     );
   }
 
-  const handleOpenEnquiry = (e) => {
+  const handleBookOnline = (e) => {
     if (e) e.preventDefault();
-    setIsModalOpen(true);
+    const url = getBookingUrl(checkIn, checkOut, guests);
+    window.open(url, '_blank');
   };
 
   const handleWhatsAppEnquiry = () => {
     const datesInfo = checkIn && checkOut ? ` from ${checkIn} to ${checkOut}` : '';
     const message = `Hello! I would like to enquire about booking the ${room.name} at ${resort.name} in Candolim, Goa${datesInfo} for ${guests} guests. Please share availability and current rates.`;
-
-    if (resort.whatsapp && resort.whatsapp !== '+91XXXXXXXXXX') {
-      window.open(`https://wa.me/${resort.whatsapp}?text=${encodeURIComponent(message)}`, '_blank');
-    } else {
-      window.open(`mailto:${resort.email}?subject=${encodeURIComponent(`Enquiry for ${room.name}`)}&body=${encodeURIComponent(message)}`, '_blank');
-    }
+    window.open(`https://wa.me/${resort.whatsapp}?text=${encodeURIComponent(message)}`, '_blank');
   };
 
   return (
@@ -278,7 +274,7 @@ export default function RoomDetail({ defaultSlug }) {
                   </p>
                 </div>
 
-                <form onSubmit={handleOpenEnquiry} className="space-y-4">
+                <form onSubmit={handleBookOnline} className="space-y-4">
                   <div>
                     <label className="block font-sans text-xs font-semibold tracking-wider uppercase text-warm-500 mb-1.5">
                       Check-in Date
@@ -328,9 +324,9 @@ export default function RoomDetail({ defaultSlug }) {
 
                   <button
                     type="submit"
-                    className="w-full btn-primary !py-3.5 text-center justify-center font-medium shadow-md hover:shadow-lg transition-all"
+                    className="w-full btn-primary !py-3.5 text-center justify-center font-medium shadow-md hover:shadow-lg transition-all gap-2"
                   >
-                    Check Availability & Enquire
+                    Check Availability & Book Online
                   </button>
                 </form>
 

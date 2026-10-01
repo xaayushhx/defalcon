@@ -1,17 +1,16 @@
 import { useState } from 'react';
-import { MapPin, Phone, Mail, Send } from 'lucide-react';
+import { MapPin, Phone, MessageCircle, Send, ExternalLink } from 'lucide-react';
 import { resort } from '../data/resort';
 import ScrollReveal from './ScrollReveal';
 
 export default function ContactSection() {
-  const [form, setForm] = useState({ name: '', email: '', message: '' });
+  const [form, setForm] = useState({ name: '', phone: '', message: '' });
   const [sent, setSent] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`Website Enquiry — ${resort.name}`);
-    const body = encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`);
-    window.open(`mailto:${resort.email}?subject=${subject}&body=${body}`, '_blank');
+    const text = `Hello Defalcon Goa Beach Resort!\n\nName: ${form.name}\nPhone: ${form.phone}\nMessage: ${form.message}`;
+    window.open(`https://wa.me/${resort.whatsapp}?text=${encodeURIComponent(text)}`, '_blank');
     setSent(true);
     setTimeout(() => setSent(false), 4000);
   };
@@ -25,7 +24,7 @@ export default function ContactSection() {
             Get in Touch
           </h3>
           <p className="font-sans text-base text-warm-500 mb-8 leading-relaxed">
-            We'd love to hear from you. Whether you have a question about rooms, availability, or anything else, our team is ready to help.
+            We'd love to hear from you. Whether you have a question about rooms, reservations, or anything else, our team is ready to help.
           </p>
 
           <div className="space-y-5">
@@ -49,49 +48,53 @@ export default function ContactSection() {
               </div>
               <div>
                 <p className="font-sans text-sm font-semibold text-warm-700 mb-0.5">Phone</p>
-                <a href={`tel:${resort.phone.replace(/\s/g, '')}`} className="font-sans text-sm text-ocean-500 hover:text-ocean-700 transition-colors">
+                <a href={`tel:${resort.phone.replace(/\s/g, '')}`} className="font-sans text-sm text-ocean-500 hover:text-ocean-700 transition-colors font-medium">
                   {resort.phone}
                 </a>
               </div>
             </div>
 
             <div className="flex items-start gap-4">
-              <div className="w-11 h-11 rounded-xl bg-ocean-50 flex items-center justify-center flex-shrink-0">
-                <Mail size={20} className="text-ocean-600" />
+              <div className="w-11 h-11 rounded-xl bg-tropical-50 flex items-center justify-center flex-shrink-0">
+                <MessageCircle size={20} className="text-tropical-600" />
               </div>
               <div>
-                <p className="font-sans text-sm font-semibold text-warm-700 mb-0.5">Email</p>
-                <a href={`mailto:${resort.email}`} className="font-sans text-sm text-ocean-500 hover:text-ocean-700 transition-colors">
-                  {resort.email}
-                </a>
+                <p className="font-sans text-sm font-semibold text-warm-700 mb-0.5">Direct Booking & WhatsApp</p>
+                <div className="flex flex-wrap items-center gap-3 mt-1">
+                  <a
+                    href={resort.bookingUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 font-sans text-xs font-semibold text-ocean-600 hover:text-ocean-800 bg-ocean-50 hover:bg-ocean-100 px-3 py-1 rounded-md transition-colors"
+                  >
+                    Online Booking Engine
+                    <ExternalLink size={12} />
+                  </a>
+                  <a
+                    href={`https://wa.me/${resort.whatsapp}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 font-sans text-xs font-semibold text-[#128C7E] hover:text-[#075E54] bg-[#25D366]/10 hover:bg-[#25D366]/20 px-3 py-1 rounded-md transition-colors"
+                  >
+                    WhatsApp Chat
+                  </a>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Map placeholder */}
-          <div className="mt-8 rounded-xl overflow-hidden border border-warm-200 bg-warm-50 aspect-video flex items-center justify-center">
-            {resort.mapEmbedUrl ? (
-              <iframe
-                src={resort.mapEmbedUrl}
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen=""
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Resort location"
-              />
-            ) : (
-              <div className="text-center p-8">
-                <MapPin size={32} className="text-warm-300 mx-auto mb-2" />
-                <p className="font-sans text-sm text-warm-400">
-                  Map will be displayed here
-                </p>
-                <p className="font-sans text-xs text-warm-300 mt-1">
-                  Add a Google Maps embed URL in resort.js
-                </p>
-              </div>
-            )}
+          {/* Map */}
+          <div className="mt-8 rounded-xl overflow-hidden border border-warm-200 bg-warm-50 aspect-video flex items-center justify-center shadow-subtle">
+            <iframe
+              src={resort.mapEmbedUrl}
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="strict-origin-when-cross-origin"
+              title="De Falcon Goa Beach Resorts Location"
+            />
           </div>
         </div>
       </ScrollReveal>
@@ -103,7 +106,7 @@ export default function ContactSection() {
             Send Us a Message
           </h4>
           <p className="font-sans text-sm text-warm-400 mb-6">
-            Fill in the form below and we'll get back to you promptly.
+            Fill in the form below and our team will connect with you promptly.
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -122,15 +125,15 @@ export default function ContactSection() {
             </div>
             <div>
               <label className="font-sans text-xs font-semibold tracking-wide uppercase text-warm-500 mb-1.5 block">
-                Email Address
+                Phone Number *
               </label>
               <input
-                type="email"
+                type="tel"
                 required
-                value={form.email}
-                onChange={(e) => setForm({ ...form, email: e.target.value })}
+                value={form.phone}
+                onChange={(e) => setForm({ ...form, phone: e.target.value })}
                 className="w-full px-4 py-2.5 rounded-lg border border-warm-200 bg-ivory-50 font-sans text-sm focus:outline-none focus:ring-2 focus:ring-ocean-300 transition-all"
-                placeholder="your@email.com"
+                placeholder="+91 86696 77609"
               />
             </div>
             <div>
@@ -143,7 +146,7 @@ export default function ContactSection() {
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
                 className="w-full px-4 py-2.5 rounded-lg border border-warm-200 bg-ivory-50 font-sans text-sm focus:outline-none focus:ring-2 focus:ring-ocean-300 transition-all resize-none"
-                placeholder="How can we help you?"
+                placeholder="How can we help you with your stay in Goa?"
               />
             </div>
             <button

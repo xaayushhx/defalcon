@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CalendarDays, Users, Home, Search, X, Send } from 'lucide-react';
+import { CalendarDays, Users, Home, Search, X, Send, ExternalLink, MessageCircle } from 'lucide-react';
 import { rooms } from '../data/rooms';
-import { resort } from '../data/resort';
+import { resort, getBookingUrl } from '../data/resort';
 import ScrollReveal from './ScrollReveal';
 
 export default function BookingForm() {
@@ -19,21 +19,18 @@ export default function BookingForm() {
 
   const validate = () => {
     const errs = {};
-    if (!formData.checkIn) errs.checkIn = 'Required';
-    if (!formData.checkOut) errs.checkOut = 'Required';
     if (formData.checkIn && formData.checkOut && formData.checkIn >= formData.checkOut) {
       errs.checkOut = 'Must be after check-in';
     }
-    if (!formData.guests || formData.guests < 1) errs.guests = 'Required';
     setErrors(errs);
     return Object.keys(errs).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSearch = (e) => {
     e.preventDefault();
-    if (validate()) {
-      setShowEnquiry(true);
-    }
+    if (!validate()) return;
+    const url = getBookingUrl(formData.checkIn, formData.checkOut, formData.guests);
+    window.open(url, '_blank');
   };
 
   return (
@@ -42,7 +39,7 @@ export default function BookingForm() {
         <ScrollReveal>
           <div className="section-max-width">
             <form
-              onSubmit={handleSubmit}
+              onSubmit={handleSearch}
               className="bg-white rounded-2xl shadow-elegant p-6 md:p-8"
             >
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 md:gap-5 items-end">
@@ -121,6 +118,30 @@ export default function BookingForm() {
                   </button>
                 </div>
               </div>
+
+              {/* Quick links below bar */}
+              <div className="mt-4 pt-3 border-t border-warm-100 flex flex-wrap items-center justify-between gap-3 text-xs text-warm-500">
+                <span>⚡ Instant confirmation & direct rates on our official booking engine</span>
+                <div className="flex items-center gap-4">
+                  <button
+                    type="button"
+                    onClick={() => setShowEnquiry(true)}
+                    className="text-ocean-600 hover:text-ocean-800 font-semibold inline-flex items-center gap-1 transition-colors"
+                  >
+                    <MessageCircle size={14} />
+                    WhatsApp Enquiry
+                  </button>
+                  <a
+                    href={resort.bookingUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sand-700 hover:text-sand-900 font-semibold inline-flex items-center gap-1 transition-colors"
+                  >
+                    <ExternalLink size={14} />
+                    Direct Booking Page
+                  </a>
+                </div>
+              </div>
             </form>
           </div>
         </ScrollReveal>
@@ -140,13 +161,12 @@ export default function BookingForm() {
 }
 
 // ============================================================
-// BOOKING ENQUIRY MODAL
+// BOOKING ENQUIRY MODAL (WHATSAPP & ONLINE ENGINE)
 // ============================================================
 export function BookingEnquiryModal({ initialData = {}, onClose, preselectedRoom = '' }) {
   const [form, setForm] = useState({
     name: '',
     phone: '',
-    email: '',
     roomCategory: preselectedRoom || initialData.roomCategory || '',
     checkIn: initialData.checkIn || '',
     checkOut: initialData.checkOut || '',
@@ -163,10 +183,6 @@ export function BookingEnquiryModal({ initialData = {}, onClose, preselectedRoom
     const errs = {};
     if (!form.name.trim()) errs.name = 'Please enter your name';
     if (!form.phone.trim()) errs.phone = 'Please enter your phone number';
-    if (!form.email.trim()) errs.email = 'Please enter your email';
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) errs.email = 'Invalid email';
-    if (!form.checkIn) errs.checkIn = 'Required';
-    if (!form.checkOut) errs.checkOut = 'Required';
     if (form.checkIn && form.checkOut && form.checkIn >= form.checkOut) errs.checkOut = 'Must be after check-in';
     setErrors(errs);
     return Object.keys(errs).length === 0;
@@ -182,28 +198,17 @@ export function BookingEnquiryModal({ initialData = {}, onClose, preselectedRoom
 
 Name: ${form.name}
 Phone: ${form.phone}
-Email: ${form.email}
 Room: ${roomName}
-Check-in: ${form.checkIn}
-Check-out: ${form.checkOut}
+${form.checkIn ? `Check-in: ${form.checkIn}` : ''}
+${form.checkOut ? `Check-out: ${form.checkOut}` : ''}
 Adults: ${form.adults}
 Children: ${form.children}
 ${form.requests ? `Special Requests: ${form.requests}` : ''}`;
 
-    // Also prepare mailto fallback
-    const mailSubject = encodeURIComponent(`Reservation Enquiry — ${resort.name}`);
-    const mailBody = encodeURIComponent(message);
-
-    // Try WhatsApp first
-    if (resort.whatsapp && resort.whatsapp !== '+91XXXXXXXXXX') {
-      window.open(
-        `https://wa.me/${resort.whatsapp}?text=${encodeURIComponent(message)}`,
-        '_blank'
-      );
-    } else {
-      // Fallback to email
-      window.open(`mailto:${resort.email}?subject=${mailSubject}&body=${mailBody}`, '_blank');
-    }
+    window.open(
+      `https://wa.me/${resort.whatsapp}?text=${encodeURIComponent(message)}`,
+      '_blank'
+    );
 
     setSubmitted(true);
   };
@@ -241,13 +246,23 @@ ${form.requests ? `Special Requests: ${form.requests}` : ''}`;
             <div className="w-16 h-16 rounded-full bg-tropical-50 flex items-center justify-center mx-auto mb-4">
               <Send size={28} className="text-tropical-500" />
             </div>
-            <h4 className="font-serif text-lg font-semibold text-ocean-700 mb-2">Enquiry Sent!</h4>
+            <h4 className="font-serif text-lg font-semibold text-ocean-700 mb-2">Enquiry Sent via WhatsApp!</h4>
             <p className="font-sans text-sm text-warm-500 mb-6 max-w-xs mx-auto">
-              Thank you for your interest. Our team will get back to you shortly with availability and rates.
+              Thank you for contacting us. Our reservations team will respond shortly.
             </p>
-            <button onClick={onClose} className="btn-primary">
-              Close
-            </button>
+            <div className="flex justify-center gap-3">
+              <a
+                href={getBookingUrl(form.checkIn, form.checkOut, form.adults)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary"
+              >
+                Book Instantly Online
+              </a>
+              <button onClick={onClose} className="btn-outline">
+                Close
+              </button>
+            </div>
           </div>
         ) : (
           /* Form */
@@ -265,30 +280,17 @@ ${form.requests ? `Special Requests: ${form.requests}` : ''}`;
               {errors.name && <p className="text-xs text-red-500 mt-1">{errors.name}</p>}
             </div>
 
-            {/* Phone + Email */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label className="font-sans text-xs font-semibold tracking-wide uppercase text-warm-500 mb-1.5 block">Phone *</label>
-                <input
-                  type="tel"
-                  value={form.phone}
-                  onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                  className={`w-full px-4 py-2.5 rounded-lg border ${errors.phone ? 'border-red-400' : 'border-warm-200'} bg-ivory-50 font-sans text-sm focus:outline-none focus:ring-2 focus:ring-ocean-300 transition-all`}
-                  placeholder="+91 XXXXX XXXXX"
-                />
-                {errors.phone && <p className="text-xs text-red-500 mt-1">{errors.phone}</p>}
-              </div>
-              <div>
-                <label className="font-sans text-xs font-semibold tracking-wide uppercase text-warm-500 mb-1.5 block">Email *</label>
-                <input
-                  type="email"
-                  value={form.email}
-                  onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  className={`w-full px-4 py-2.5 rounded-lg border ${errors.email ? 'border-red-400' : 'border-warm-200'} bg-ivory-50 font-sans text-sm focus:outline-none focus:ring-2 focus:ring-ocean-300 transition-all`}
-                  placeholder="your@email.com"
-                />
-                {errors.email && <p className="text-xs text-red-500 mt-1">{errors.email}</p>}
-              </div>
+            {/* Phone */}
+            <div>
+              <label className="font-sans text-xs font-semibold tracking-wide uppercase text-warm-500 mb-1.5 block">Phone Number *</label>
+              <input
+                type="tel"
+                value={form.phone}
+                onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                className={`w-full px-4 py-2.5 rounded-lg border ${errors.phone ? 'border-red-400' : 'border-warm-200'} bg-ivory-50 font-sans text-sm focus:outline-none focus:ring-2 focus:ring-ocean-300 transition-all`}
+                placeholder="+91 86696 77609"
+              />
+              {errors.phone && <p className="text-xs text-red-500 mt-1">{errors.phone}</p>}
             </div>
 
             {/* Room Category */}
@@ -309,7 +311,7 @@ ${form.requests ? `Special Requests: ${form.requests}` : ''}`;
             {/* Dates */}
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="font-sans text-xs font-semibold tracking-wide uppercase text-warm-500 mb-1.5 block">Check-in *</label>
+                <label className="font-sans text-xs font-semibold tracking-wide uppercase text-warm-500 mb-1.5 block">Check-in</label>
                 <input
                   type="date"
                   min={today}
@@ -320,7 +322,7 @@ ${form.requests ? `Special Requests: ${form.requests}` : ''}`;
                 {errors.checkIn && <p className="text-xs text-red-500 mt-1">{errors.checkIn}</p>}
               </div>
               <div>
-                <label className="font-sans text-xs font-semibold tracking-wide uppercase text-warm-500 mb-1.5 block">Check-out *</label>
+                <label className="font-sans text-xs font-semibold tracking-wide uppercase text-warm-500 mb-1.5 block">Check-out</label>
                 <input
                   type="date"
                   min={form.checkIn || today}
@@ -369,13 +371,21 @@ ${form.requests ? `Special Requests: ${form.requests}` : ''}`;
             </div>
 
             {/* Submit */}
-            <button type="submit" className="btn-primary w-full gap-2">
-              <Send size={16} />
-              Send Enquiry
-            </button>
-            <p className="text-center text-xs text-warm-400">
-              Your enquiry will be sent via {resort.whatsapp !== '+91XXXXXXXXXX' ? 'WhatsApp' : 'email'}. Our team will respond with availability and rates.
-            </p>
+            <div className="space-y-2">
+              <button type="submit" className="btn-primary w-full gap-2">
+                <Send size={16} />
+                Send Enquiry via WhatsApp
+              </button>
+              <a
+                href={getBookingUrl(form.checkIn, form.checkOut, form.adults)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-outline w-full text-center justify-center gap-2"
+              >
+                <ExternalLink size={16} />
+                Book Online via Booking Engine
+              </a>
+            </div>
           </form>
         )}
       </motion.div>
