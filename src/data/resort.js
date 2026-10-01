@@ -7,15 +7,15 @@
  */
 
 export const resort = {
-  name: 'Defalcon Goa Beach Resort',
+  name: 'De Falcon Goa Beach Resort',
   tagline: 'Your Escape to Paradise',
   location: 'Candolim, North Goa, Goa, India',
   shortDescription:
     'Experience the beauty of Goa, where tropical charm meets the comfort of a perfect getaway.',
   aboutDescription:
-    'Nestled in the heart of Candolim, Defalcon Goa Beach Resort offers a warm and welcoming retreat for travelers seeking the best of Goa. Surrounded by lush tropical greenery and just moments from the golden sands of Candolim Beach, our resort combines comfortable accommodation with the laid-back charm that makes Goa so special.',
+    'Nestled in the heart of Candolim, De Falcon Goa Beach Resort offers a warm and welcoming retreat for travelers seeking the best of Goa. Surrounded by lush tropical greenery and just moments from the golden sands of Candolim Beach, our resort combines comfortable accommodation with the laid-back charm that makes Goa so special.',
   aboutSubtext:
-    'Whether you are here to unwind by the pool, explore the vibrant local culture, or simply soak in the coastal atmosphere, Defalcon provides a peaceful base for your Goan holiday.',
+    'Whether you are here to unwind by the pool, explore the vibrant local culture, or simply soak in the coastal atmosphere, De Falcon provides a peaceful base for your Goan holiday.',
 
   phone: '+91 86696 77609',
   whatsapp: '918669677609', // WhatsApp number for enquiries (no spaces)
@@ -78,7 +78,7 @@ export const goaExperiences = [
     id: 1,
     title: 'Candolim Beach & Coastline',
     description:
-      'One of North Goa\'s most beloved beaches, known for its golden sands, gentle waves, and stunning sunsets. Located just moments from Defalcon Goa Beach Resort.',
+      'One of North Goa\'s most beloved beaches, known for its golden sands, gentle waves, and stunning sunsets. Located just moments from De Falcon Goa Beach Resort.',
     image: '/images/goa/candolim-beach-sunset.jpg',
   },
   {

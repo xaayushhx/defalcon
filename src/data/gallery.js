@@ -2,7 +2,7 @@
  * ============================================================
  * GALLERY CONFIGURATION
  * ============================================================
- * Actual resort photographs of Defalcon Goa Beach Resort.
+ * Actual resort photographs of De Falcon Goa Beach Resort.
  * Categories: 'resort', 'rooms', 'luxury'
  */
 
@@ -10,7 +10,7 @@ export const galleryImages = [
   {
     id: 1,
     src: '/images/resort/hotel-main.avif',
-    alt: 'Defalcon Goa Beach Resort — property view with swimming pool & tropical palm trees',
+    alt: 'De Falcon Goa Beach Resort — property view with swimming pool & tropical palm trees',
     category: 'resort',
   },
   {

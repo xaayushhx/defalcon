@@ -38,7 +38,7 @@ export default function Home() {
               <div className="relative rounded-2xl overflow-hidden aspect-[4/3]">
                 <img
                   src="/images/resort/hotel-main.avif"
-                  alt="Defalcon Goa Beach Resort Candolim"
+                  alt="De Falcon Goa Beach Resort Candolim"
                   className="w-full h-full object-cover"
                   loading="lazy"
                 />
@@ -76,7 +76,7 @@ export default function Home() {
           <SectionHeading
             subtitle="Accommodation"
             title="Our Rooms"
-            description="Choose from three thoughtfully designed room categories, each offering a unique experience at Defalcon Goa Beach Resort."
+            description="Choose from three thoughtfully designed room categories, each offering a unique experience at De Falcon Goa Beach Resort."
           />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {rooms.map((room, i) => (
@@ -135,7 +135,7 @@ export default function Home() {
         <div className="section-max-width">
           <SectionHeading
             subtitle="Gallery"
-            title="A Glimpse of Defalcon"
+            title="A Glimpse of De Falcon"
             description="Explore our resort, rooms, and surroundings through our photo gallery."
           />
           <GalleryGrid images={galleryImages} maxItems={6} />
@@ -177,15 +177,22 @@ export default function Home() {
               Make your next holiday a memorable one at {resort.name}.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <button
-                onClick={() => document.querySelector('#booking')?.scrollIntoView({ behavior: 'smooth' })}
-                className="btn-primary !bg-coral hover:!bg-coral-500 gap-2"
+              <a
+                href={resort.bookingUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary !bg-coral hover:!bg-coral-500 gap-2 shadow-lg hover:shadow-xl hover:scale-105 transition-all font-bold !py-3.5 !px-8"
               >
-                <MessageCircle size={16} />
-                Book Your Stay
-              </button>
-              <a href="#contact" className="btn-secondary">
-                Contact Us
+                Book Your Stay Online (AsiaTech)
+              </a>
+              <a
+                href={`https://wa.me/${resort.whatsapp}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white font-sans text-sm font-bold shadow-lg hover:shadow-xl hover:scale-105 transition-all"
+              >
+                <MessageCircle size={18} />
+                WhatsApp Us
               </a>
             </div>
           </ScrollReveal>

@@ -42,7 +42,7 @@ export default function Footer() {
             {/* Column 1: About */}
             <div className="lg:col-span-1">
               <Link to="/" className="inline-block mb-4">
-                <span className="font-serif text-2xl font-bold text-white">Defalcon</span>
+                <span className="font-serif text-2xl font-bold text-white">De Falcon</span>
                 <span className="block font-sans text-[10px] tracking-[0.2em] uppercase text-sand-300 mt-0.5">
                   Goa Beach Resort
                 </span>

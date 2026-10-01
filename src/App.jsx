@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import FloatingWhatsApp from './components/FloatingWhatsApp';
 import Home from './pages/Home';
 import RoomDetail from './pages/RoomDetail';
 import DeluxeRoom from './pages/DeluxeRoom';
@@ -48,6 +49,7 @@ export default function App() {
             <Route path="*" element={<Home />} />
           </Routes>
         </div>
+        <FloatingWhatsApp />
         <Footer />
       </div>
     </BrowserRouter>

@@ -1,6 +1,6 @@
-# Defalcon Goa Beach Resort Website
+# De Falcon Goa Beach Resort Website
 
-A modern, luxurious, fully responsive website for **Defalcon Goa Beach Resort**, located in Candolim, North Goa, India.
+A modern, luxurious, fully responsive website for **De Falcon Goa Beach Resort**, located in Candolim, North Goa, India.
 
 Built with **React**, **Vite**, **Tailwind CSS**, **Framer Motion**, and **React Router v6**.
 

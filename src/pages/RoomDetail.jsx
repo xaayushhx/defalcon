@@ -270,7 +270,7 @@ export default function RoomDetail({ defaultSlug }) {
                     Reserve Your Stay
                   </h3>
                   <p className="font-sans text-xs text-warm-500 mt-1">
-                    Enquire directly with Defalcon Goa Beach Resort for best rate guarantee and personalised service.
+                    Book directly with De Falcon Goa Beach Resort for best rate guarantee and instant confirmation.
                   </p>
                 </div>
 
@@ -324,28 +324,28 @@ export default function RoomDetail({ defaultSlug }) {
 
                   <button
                     type="submit"
-                    className="w-full btn-primary !py-3.5 text-center justify-center font-medium shadow-md hover:shadow-lg transition-all gap-2"
+                    className="w-full btn-primary !py-3.5 text-center justify-center font-bold shadow-lg hover:shadow-xl transition-all gap-2"
                   >
                     Check Availability & Book Online
                   </button>
                 </form>
 
                 {/* Instant Messenger CTA */}
-                <div className="pt-2 border-t border-warm-100">
-                  <p className="font-sans text-xs text-center text-warm-400 mb-3">Or connect instantly with our team</p>
+                <div className="pt-3 border-t border-warm-100">
+                  <p className="font-sans text-xs text-center font-semibold text-warm-500 mb-3">Instant Assistance & Inquiries</p>
                   <div className="flex gap-2">
                     <button
                       type="button"
                       onClick={handleWhatsAppEnquiry}
-                      className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg font-sans text-xs font-semibold bg-[#25D366]/10 text-[#128C7E] hover:bg-[#25D366]/20 transition-colors"
+                      className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-sans text-xs font-bold bg-[#25D366] text-white hover:bg-[#20bd5a] shadow-md hover:shadow-lg transition-all"
                     >
-                      <MessageCircle size={15} />
-                      WhatsApp
+                      <MessageCircle size={16} />
+                      WhatsApp Us
                     </button>
                     {resort.phone && (
                       <a
                         href={`tel:${resort.phone.replace(/\s/g, '')}`}
-                        className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg font-sans text-xs font-semibold bg-ocean-50 text-ocean-700 hover:bg-ocean-100 transition-colors"
+                        className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-sans text-xs font-bold bg-ocean-50 text-ocean-700 hover:bg-ocean-100 transition-colors"
                       >
                         <Phone size={15} />
                         Call Resort
@@ -358,7 +358,7 @@ export default function RoomDetail({ defaultSlug }) {
                 <div className="bg-ivory-100 rounded-xl p-4 space-y-2.5 text-xs text-warm-600">
                   <div className="flex items-center gap-2">
                     <ShieldCheck size={16} className="text-tropical-600 flex-shrink-0" />
-                    <span>Best rate guaranteed with direct enquiry</span>
+                    <span>Best rate guaranteed with direct booking</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Clock size={16} className="text-tropical-600 flex-shrink-0" />
@@ -382,7 +382,7 @@ export default function RoomDetail({ defaultSlug }) {
             <SectionHeading
               subtitle="Explore More"
               title="Other Room Categories"
-              description="Discover the alternative accommodations available at Defalcon Goa Beach Resort."
+              description="Discover the alternative accommodations available at De Falcon Goa Beach Resort."
             />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               {otherRooms.map((other, idx) => (

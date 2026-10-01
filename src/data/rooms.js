@@ -20,7 +20,7 @@ export const rooms = [
       'A comfortable and well-appointed room designed for a relaxing Goan holiday, with warm interiors and thoughtful touches.',
 
     fullDescription: [
-      'The Deluxe Room at Defalcon Goa Beach Resort offers a welcoming and comfortable space to unwind after a day exploring Candolim. Designed with warm wood tones and soft natural textures, the room creates a calm, restful atmosphere that complements the tropical surroundings.',
+      'The Deluxe Room at De Falcon Goa Beach Resort offers a welcoming and comfortable space to unwind after a day exploring Candolim. Designed with warm wood tones and soft natural textures, the room creates a calm, restful atmosphere that complements the tropical surroundings.',
       'Each room is thoughtfully furnished to provide everything you need for a pleasant stay — from a comfortable bed with quality linens to a functional workspace and a private bathroom with modern fittings. Natural light fills the space, and carefully chosen décor adds a touch of Goan character.',
       'The Deluxe Room is ideal for couples, solo travellers, or anyone looking for a comfortable and affordable base in the heart of Candolim.',
     ],
@@ -120,7 +120,7 @@ export const rooms = [
       'A step above the ordinary — the Super Deluxe Room offers additional space, refined interiors, and enhanced comfort for a memorable stay.',
 
     fullDescription: [
-      'The Super Deluxe Room elevates your stay at Defalcon Goa Beach Resort with a more spacious layout, premium furnishings, and thoughtful design details that create a sense of refined tropical comfort.',
+      'The Super Deluxe Room elevates your stay at De Falcon Goa Beach Resort with a more spacious layout, premium furnishings, and thoughtful design details that create a sense of refined tropical comfort.',
       'Enjoy a generous seating area where you can relax with a book or plan the next day\'s adventure, complemented by a well-appointed sleeping space with premium bedding. Large windows invite the lush Goan landscape inside, and the tasteful interiors blend contemporary comfort with local character.',
       'With its enhanced amenities and inviting atmosphere, the Super Deluxe Room is perfect for those who appreciate a little extra space and sophistication in their holiday accommodation.',
     ],
@@ -218,7 +218,7 @@ export const rooms = [
       'Our most distinguished accommodation — featuring a private in-room Jacuzzi tub, spacious elegance, and premium appointments for an unforgettable Goan retreat.',
 
     fullDescription: [
-      'The Luxury Room with Jacuzzi at Defalcon Goa Beach Resort represents the absolute pinnacle of coastal comfort and indulgence. Designed with high-end materials and an eye for luxury, this room offers an extraordinary living space that feels both romantic and genuinely rejuvenating.',
+      'The Luxury Room with Jacuzzi at De Falcon Goa Beach Resort represents the absolute pinnacle of coastal comfort and indulgence. Designed with high-end materials and an eye for luxury, this room offers an extraordinary living space that feels both romantic and genuinely rejuvenating.',
       'The centerpiece is your private in-room Jacuzzi, allowing you to soak in warm hydrotherapy bubbles at any hour of the day or night. Complemented by a plush king-sized bed with crisp premium linens, bespoke wooden craftsmanship, and generous space, every hour spent here feels like a five-star escape.',
       'The Luxury Room is the premier choice for couples celebrating honeymoons, anniversaries, or discerning guests seeking the highest standard of boutique indulgence in Candolim.',
     ],

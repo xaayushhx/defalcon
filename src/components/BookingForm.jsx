@@ -119,26 +119,33 @@ export default function BookingForm() {
                 </div>
               </div>
 
-              {/* Quick links below bar */}
-              <div className="mt-4 pt-3 border-t border-warm-100 flex flex-wrap items-center justify-between gap-3 text-xs text-warm-500">
-                <span>⚡ Instant confirmation & direct rates on our official booking engine</span>
-                <div className="flex items-center gap-4">
-                  <button
-                    type="button"
-                    onClick={() => setShowEnquiry(true)}
-                    className="text-ocean-600 hover:text-ocean-800 font-semibold inline-flex items-center gap-1 transition-colors"
+              {/* Quick prominent booking & WhatsApp actions */}
+              <div className="mt-5 pt-4 border-t border-warm-200 flex flex-col sm:flex-row items-center justify-between gap-4 bg-ocean-50/60 -mx-6 -mb-6 md:-mx-8 md:-mb-8 p-4 md:px-8 rounded-b-2xl">
+                <div className="flex items-center gap-2 text-xs font-semibold text-ocean-900">
+                  <span className="flex h-2.5 w-2.5 relative">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-tropical-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-tropical-500"></span>
+                  </span>
+                  <span>Official Booking Guarantee: Lowest rates online & instant confirmation</span>
+                </div>
+                <div className="flex flex-wrap items-center gap-3 w-full sm:w-auto justify-end">
+                  <a
+                    href={`https://wa.me/${resort.whatsapp}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white font-sans text-xs font-bold shadow-md hover:shadow-lg transition-all"
                   >
-                    <MessageCircle size={14} />
+                    <MessageCircle size={16} />
                     WhatsApp Enquiry
-                  </button>
+                  </a>
                   <a
                     href={resort.bookingUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sand-700 hover:text-sand-900 font-semibold inline-flex items-center gap-1 transition-colors"
+                    className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-ocean-700 hover:bg-ocean-800 text-white font-sans text-xs font-bold shadow-md hover:shadow-lg transition-all"
                   >
-                    <ExternalLink size={14} />
-                    Direct Booking Page
+                    <ExternalLink size={15} />
+                    Direct AsiaTech Portal
                   </a>
                 </div>
               </div>

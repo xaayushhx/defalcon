@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, MessageCircle } from 'lucide-react';
 import { resort } from '../data/resort';
 
 const navLinks = [
@@ -75,7 +75,7 @@ export default function Navbar() {
             {/* Logo */}
             <Link to="/" className="flex items-center gap-2 group" onClick={() => setMobileOpen(false)}>
               <span className={`font-serif text-xl md:text-2xl font-bold tracking-tight transition-colors duration-300 ${logoTextClass}`}>
-                Defalcon
+                De Falcon
               </span>
               <span className={`hidden sm:inline font-sans text-[10px] tracking-[0.15em] uppercase opacity-70 transition-colors duration-300 ${logoTextClass}`}>
                 Goa Beach Resort
@@ -94,13 +94,24 @@ export default function Navbar() {
                   {link.label}
                 </Link>
               ))}
-              <Link
-                to="/#booking"
-                onClick={(e) => handleNavClick(e, '/#booking')}
-                className="ml-4 btn-primary !py-2.5 !px-6 !text-xs"
+              <a
+                href={resort.bookingUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ml-4 btn-primary !py-2.5 !px-6 !text-xs font-bold tracking-wider shadow-md hover:shadow-xl hover:scale-105 transition-all"
               >
                 Book Now
-              </Link>
+              </a>
+              <a
+                href={`https://wa.me/${resort.whatsapp}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ml-2 inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-[#25D366] text-white font-sans text-xs font-bold shadow-sm hover:bg-[#20bd5a] hover:shadow-md transition-all"
+                title="Chat on WhatsApp"
+              >
+                <MessageCircle size={15} />
+                <span>WhatsApp</span>
+              </a>
             </div>
 
             {/* Mobile Menu Toggle */}
@@ -140,7 +151,7 @@ export default function Navbar() {
                 {/* Menu Header */}
                 <div className="flex items-center justify-between p-6 border-b border-warm-100">
                   <span className="font-serif text-lg font-bold text-ocean-700">
-                    Defalcon
+                    De Falcon
                   </span>
                   <button onClick={() => setMobileOpen(false)} className="p-1 text-warm-500">
                     <X size={22} />
@@ -168,15 +179,25 @@ export default function Navbar() {
                 </div>
 
                 {/* Mobile CTA */}
-                <div className="p-6 border-t border-warm-100">
-                  <Link
-                    to="/#booking"
-                    onClick={(e) => handleNavClick(e, '/#booking')}
-                    className="btn-primary w-full text-center"
+                <div className="p-6 border-t border-warm-100 space-y-3">
+                  <a
+                    href={resort.bookingUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-primary w-full text-center block !py-3 font-bold shadow-md"
                   >
-                    Book Your Stay
-                  </Link>
-                  <p className="mt-3 text-center text-xs text-warm-400 font-sans">
+                    Book Online (Best Rates)
+                  </a>
+                  <a
+                    href={`https://wa.me/${resort.whatsapp}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 w-full py-3 rounded-lg bg-[#25D366] text-white font-sans text-sm font-bold shadow-md hover:bg-[#20bd5a] transition-colors"
+                  >
+                    <MessageCircle size={18} />
+                    WhatsApp Enquiry
+                  </a>
+                  <p className="mt-2 text-center text-xs text-warm-400 font-sans">
                     {resort.location}
                   </p>
                 </div>

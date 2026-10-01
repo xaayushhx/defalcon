@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, MessageCircle, ExternalLink } from 'lucide-react';
 import { resort } from '../data/resort';
 
 export default function Hero() {
@@ -14,7 +14,7 @@ export default function Hero() {
       <div className="absolute inset-0">
         <img
           src="/images/resort/hotel-main.avif"
-          alt="Defalcon Goa Beach Resort — resort view at Candolim"
+          alt="De Falcon Goa Beach Resort — resort view at Candolim"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60" />
@@ -62,14 +62,29 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.1, duration: 0.7 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
+          className="flex flex-wrap items-center justify-center gap-3 md:gap-4"
         >
-          <Link to="/#rooms" className="btn-primary !bg-coral hover:!bg-coral-500 !shadow-medium">
-            Explore Our Rooms
+          <a
+            href={resort.bookingUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-primary !bg-sand-400 hover:!bg-sand-300 !text-ocean-950 font-bold !py-3.5 !px-7 shadow-xl hover:scale-105 transition-all gap-2"
+          >
+            <span>Book Online (Best Rates)</span>
+            <ExternalLink size={16} />
+          </a>
+          <a
+            href={`https://wa.me/${resort.whatsapp}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white font-sans text-sm font-bold shadow-xl hover:scale-105 transition-all"
+          >
+            <MessageCircle size={18} />
+            <span>WhatsApp Us</span>
+          </a>
+          <Link to="/#rooms" className="btn-secondary !text-white !border-white/40 hover:!bg-white/20 !py-3.5 !px-6">
+            Explore Rooms
           </Link>
-          <button onClick={scrollToBooking} className="btn-secondary">
-            Book Your Stay
-          </button>
         </motion.div>
       </div>
 

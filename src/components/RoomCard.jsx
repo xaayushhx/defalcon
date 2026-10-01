@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, MessageCircle } from 'lucide-react';
+import { ArrowRight, Calendar, MessageCircle } from 'lucide-react';
+import { resort } from '../data/resort';
 import ScrollReveal from './ScrollReveal';
 
 export default function RoomCard({ room, index = 0 }) {
@@ -11,7 +12,7 @@ export default function RoomCard({ room, index = 0 }) {
         <div className="relative overflow-hidden aspect-[4/3]">
           <img
             src={room.cardImage}
-            alt={`${room.name} at Defalcon Goa Beach Resort`}
+            alt={`${room.name} at De Falcon Goa Beach Resort`}
             className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
             loading="lazy"
           />
@@ -55,21 +56,23 @@ export default function RoomCard({ room, index = 0 }) {
           </div>
 
           {/* Actions */}
-          <div className="flex gap-3">
+          <div className="flex gap-2.5">
             <Link
               to={`/rooms/${room.slug}`}
-              className="btn-outline !py-2.5 !px-5 !text-xs flex-1 gap-1.5"
+              className="btn-outline !py-2.5 !px-3.5 !text-xs flex-1 gap-1 justify-center"
             >
-              Explore Room
-              <ArrowRight size={14} />
+              Details
+              <ArrowRight size={13} />
             </Link>
-            <Link
-              to={`/rooms/${room.slug}#enquiry`}
-              className="btn-primary !py-2.5 !px-5 !text-xs flex-1 gap-1.5"
+            <a
+              href={resort.bookingUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary !py-2.5 !px-3.5 !text-xs flex-1 gap-1.5 justify-center font-bold shadow-md hover:shadow-lg"
             >
-              <MessageCircle size={14} />
-              Enquire Now
-            </Link>
+              <Calendar size={13} />
+              Book Now
+            </a>
           </div>
         </div>
       </div>
