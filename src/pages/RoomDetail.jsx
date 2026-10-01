@@ -348,7 +348,7 @@ export default function RoomDetail({ defaultSlug }) {
                     </button>
                     {resort.phone && (
                       <a
-                        href={`tel:${resort.phone}`}
+                        href={`tel:${resort.phone.replace(/\s/g, '')}`}
                         className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg font-sans text-xs font-semibold bg-ocean-50 text-ocean-700 hover:bg-ocean-100 transition-colors"
                       >
                         <Phone size={15} />

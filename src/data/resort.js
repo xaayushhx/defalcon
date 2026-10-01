@@ -17,10 +17,9 @@ export const resort = {
   aboutSubtext:
     'Whether you are here to unwind by the pool, explore the vibrant local culture, or simply soak in the coastal atmosphere, Defalcon provides a peaceful base for your Goan holiday.',
 
-  // [PLACEHOLDER] — Replace with verified contact details
-  phone: '+91 XXXXX XXXXX',
+  phone: '+91 86696 77609',
   email: 'reservations@defalcongoa.com',
-  whatsapp: '+91XXXXXXXXXX', // WhatsApp number for enquiries (no spaces)
+  whatsapp: '918669677609', // WhatsApp number for enquiries (no spaces)
 
   // [PLACEHOLDER] — Replace with actual coordinates
   mapCoordinates: {
@@ -30,12 +29,12 @@ export const resort = {
   mapEmbedUrl: '', // Paste Google Maps embed URL here
 
   address: {
-    line1: 'Defalcon Goa Beach Resort',
-    line2: 'Candolim',
-    city: 'North Goa',
+    line1: '503/A Vaddy, Fort Aguada Road',
+    line2: 'Near United Colors of Benetton Store',
+    city: 'Candolim',
     state: 'Goa',
     country: 'India',
-    pincode: '403515', // [PLACEHOLDER]
+    pincode: '403515',
   },
 
   socialLinks: {

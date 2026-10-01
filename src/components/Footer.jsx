@@ -125,8 +125,8 @@ export default function Footer() {
                   <MapPin size={16} className="mt-0.5 flex-shrink-0 text-sand-300" />
                   <span className="font-sans text-sm text-white/60 leading-relaxed">
                     {resort.address.line1}<br />
-                    {resort.address.line2}, {resort.address.city}<br />
-                    {resort.address.state}, {resort.address.country}
+                    {resort.address.line2}<br />
+                    {resort.address.city}, {resort.address.state} - {resort.address.pincode}
                   </span>
                 </li>
                 <li className="flex items-center gap-3">

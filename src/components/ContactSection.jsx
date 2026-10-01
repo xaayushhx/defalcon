@@ -37,8 +37,8 @@ export default function ContactSection() {
                 <p className="font-sans text-sm font-semibold text-warm-700 mb-0.5">Address</p>
                 <p className="font-sans text-sm text-warm-500 leading-relaxed">
                   {resort.address.line1}<br />
-                  {resort.address.line2}, {resort.address.city}<br />
-                  {resort.address.state}, {resort.address.country}
+                  {resort.address.line2}<br />
+                  {resort.address.city}, {resort.address.state} - {resort.address.pincode}
                 </p>
               </div>
             </div>
